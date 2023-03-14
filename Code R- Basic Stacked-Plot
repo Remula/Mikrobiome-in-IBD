@@ -1,0 +1,39 @@
+Basic Plot (stacked)
+read.cvs function
+
+#The ibd_taxa object contains the information to visualize count data
+
+#coloring barplot
+
+# generate number of colours equal to number of phyla
+colours <- rainbow(length(unique(ibd_lineages$Phylum)))
+color.indices <- match(ibd_lineages$Phylum, unique(ibd_lineages$Phylum))
+
+# generate a vector with color for each taxon
+colvec <- colours[color.indices]
+#The colvec vector has as many values as there are taxa in the data set.
+
+
+barplot(as.matrix(ibd_taxa), col=colvec)
+
+legend('topright', fill=colours,legend=unique(ibd_lineages$Phylum))
+#cols dataframe to make a legend.
+
+#ploting the legend in a separate area.
+# par and mar function
+
+#the par function to specify 2 rows for plotting.mar needs to be adjusted so the bar plot fits in the plotting area.
+par(xpd=TRUE, mfrow = c(2,1), mar=c(1, 1, 1, 1))
+plot(NULL ,xaxt='n',yaxt='n',bty='n',ylab='',xlab='', xlim=0:1, ylim=0:1)
+#this code generate an empty figure since the legend needs to be plotted over a figure.
+
+legend("topright", fill=colours,legend=unique(ibd_lineages$Phylum), cex=.8)
+barplot(as.matrix(ibd_taxa), col=colvec,  xaxt='n', yaxt='n', ylim=c(0, 1))
+#the bar plot is added.
+#If you want to plot the legend to the right of the stacked bar plot, you only need to set mfrow to c(1,2) and move the bar plot first after par.
+
+dev.off ()
+
+
+
+
