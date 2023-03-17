@@ -1,0 +1,31 @@
+#install the biomformat R package.
+#package is available from a repository of R packages called bioconductor
+
+if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
+BiocManager::install("biomformat")
+
+#install the phyloseq R package
+
+BiocManager::install("phyloseq")
+
+library(biomformat)
+library(phyloseq)
+
+#loading .biom file
+ibd_biom=read_biom("ibd_data.biom")
+
+#The biomformat package is only reading and writing BIOM files, it does not support visualization. This is the job of phyloseq.
+#convert the BIOM  object into a phyloseq object.
+#extracting the components from the BIOM object, which are the sample metadata, the counts and the lineages.
+#re-assemble them in a phyloseq object.
+
+metadata=sample_metadata(ibd_biom)
+lineages=observation_metadata(ibd_biom)
+counts=biom_data(ibd_biom) 
+ps=phyloseq(otu_table(as.matrix(counts),taxa_are_rows = TRUE),tax_table(as.matrix(lineages)),sample_data(metadata))
+
+#The phyloseq object ps can now be used for further visualisation and analysis in phyloseq.
+
+#taxonomic levels and metadata are not named.
+colnames(tax_table(ps))=c("Kingdom","Phylum","Class","Order","Family","Genus","Species")
+colnames(sample_data(ps))=c("SRA_metagenome_name", "Age", "Diagnosis", "Fecal.Calprotectin", "antibiotic", "immunosuppressant", "mesalamine", "steroids")
