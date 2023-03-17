@@ -5,3 +5,6 @@ The example data are from a large-scale IBD study on a cohort of 155 people, 34 
 doi: 10.1038/s41564-018-0306-4
 
 ![image](https://user-images.githubusercontent.com/76582575/225852474-725aca8c-c3f7-4c11-b37c-c81f63acbdc6.png)
+the stacked plot created with ggplot2 package 
+
+- most abundant phylum is Firmicutes in many samples.
