@@ -4,3 +4,4 @@ IBD is a gastrointestinal disorder where the immune system is abnormally active,
 The example data are from a large-scale IBD study on a cohort of 155 people, 34 of which were healthy, 53 suffered from UC and 68 from CD. Stool samples from all participants were collected, processed and sequenced to compare the composition of the gut microbiome across the three groups. The infographic gives an overview of the study characteristics.
 doi: 10.1038/s41564-018-0306-4
 
+![image](https://user-images.githubusercontent.com/76582575/225852474-725aca8c-c3f7-4c11-b37c-c81f63acbdc6.png)
