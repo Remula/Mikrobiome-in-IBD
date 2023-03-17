@@ -1,0 +1,19 @@
+library(ggplot2)
+library(reshape2)
+long_data <- cbind(ibd_taxa, ibd_lineages)
+long_data <- reshape2::melt(long_data)
+
+#convert the taxon abundance table into another (so-called long) format. The reformatted table has fewer columns than before:
+#the first column contains taxon names, the second column the sample identifier, and the third column the abundance of the species in that sample.
+
+#we add the taxonomic data, these are the same for each taxon, so they are automatically added as extra columns.
+long_data2 <- long_data[,-2]
+# remove the second column from data.frame
+
+ggplot(data=long_data2, aes(x=variable, y=value, fill=Phylum))+
+#specify that we want a stacked bar plot by adding geom_bar after the plus sign:
+geom_bar(position='stack', stat='identity') +
+#format the x-axis and y-axis with the theme and labs functions. 
+theme(axis.text.x=element_blank(), axis.ticks.x=element_blank()) + labs(x='Sample', y='Relative abundance')
+
+
